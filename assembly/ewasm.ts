@@ -7,5 +7,8 @@ export class Address {
   ) {}
 }
 
+export function read<T>(name: string): T {}
+export function write<T>(name: string, value: T): void {}
+
 // export type Address = i32
 
