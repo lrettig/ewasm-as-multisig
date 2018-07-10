@@ -6,6 +6,7 @@
 
 import {
   Address,
+  Contract,
   read,
   write,
 } from "./ewasm"
@@ -14,7 +15,7 @@ import "set"
 // Constants
 const MAX_OWNERS: i32 = 50;
 
-class MultiSigWalletFactory {
+class MultiSigWalletFactory extends Contract {
   // Create a new wallet. Takes a list of owners and a minimum required number
   // of signatures, returns address of new wallet contract.
   create(owners: Address[], required: i32): Address {
@@ -23,7 +24,7 @@ class MultiSigWalletFactory {
   }
 }
 
-class MultiSigWallet {
+class MultiSigWallet extends Contract {
   // Contract constructor sets initial owners and required number of confirmations
   constructor(
     owners: Address[],
@@ -66,5 +67,11 @@ class MultiSigWallet {
   isConfirmed(
     txid: i32,
   ):bool {}
+}
+
+export function main(): void {
+  // Bootstrap the whole process
+  var factory = new MultiSigWalletFactory
+  factory.init()
 }
 

@@ -7,6 +7,10 @@ export class Address {
   ) {}
 }
 
+export class Contract {
+  init(): void {}
+}
+
 export function read<T>(name: string): T {}
 export function write<T>(name: string, value: T): void {}
 
