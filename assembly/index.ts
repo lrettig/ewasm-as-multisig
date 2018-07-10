@@ -4,6 +4,8 @@
 // All code offered without warranty.
 // Inspired by https://github.com/gnosis/MultiSigWallet
 
+import "allocator/arena"
+
 import {
   Address,
   Contract,
@@ -13,7 +15,7 @@ import {
 import "set"
 
 // Constants
-const MAX_OWNERS: i32 = 50;
+const MAX_OWNERS: i32 = 50
 
 class MultiSigWalletFactory extends Contract {
   // Create a new wallet. Takes a list of owners and a minimum required number
@@ -37,7 +39,7 @@ class MultiSigWallet extends Contract {
       require(o)
       isOwner.add(o)
     }
-    write<Set>("isOwner", isOwner);
+    write<Set>("isOwner", isOwner)
   }
 
   addOwner(
@@ -71,7 +73,7 @@ class MultiSigWallet extends Contract {
 
 export function main(): void {
   // Bootstrap the whole process
-  var factory = new MultiSigWalletFactory
-  factory.init()
+  var factory = new MultiSigWalletFactory()
+  // factory.init()
 }
 

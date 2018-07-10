@@ -1,6 +1,9 @@
 // Ewasm-AssemblyScript API
 // Author: Lane Rettig <lane@cryptonyc.org>
 
+// import "allocator/arena"
+// import "allocator/tlsf"
+
 export class Address {
   constructor(
     public Address: i32,
