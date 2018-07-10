@@ -10,9 +10,10 @@ import {
   Address,
   Contract,
   read,
+  assert,
   write,
 } from "./ewasm"
-import "set"
+import { Set } from "internal/set"
 
 // Constants
 const MAX_OWNERS: i32 = 50
@@ -21,8 +22,8 @@ class MultiSigWalletFactory extends Contract {
   // Create a new wallet. Takes a list of owners and a minimum required number
   // of signatures, returns address of new wallet contract.
   create(owners: Address[], required: i32): Address {
-    wallet = new MultiSigWallet(owners, required)
-    return wallet
+    var wallet = new MultiSigWallet(owners, required)
+    return wallet.init()
   }
 }
 
@@ -32,11 +33,12 @@ class MultiSigWallet extends Contract {
     owners: Address[],
     required: i32,
   ) {
+    super()
     var isOwner: Set<Address> = read<Set<Address>>("isOwner")
     for (var i:i32 = 0; i < owners.length; i++) {
       var o:Address = owners[i]
-      require(!isOwner.has(o))
-      require(o)
+      assert(!isOwner.has(o))
+      assert(o)
       isOwner.add(o)
     }
     write<Set>("isOwner", isOwner)
