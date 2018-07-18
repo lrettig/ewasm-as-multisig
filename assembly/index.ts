@@ -33,7 +33,7 @@ class MultiSigWallet extends Contract {
     owners: Address[],
     required: i32,
   ) {
-    super()
+    // super()
     var isOwner: Set<Address> = read<Set<Address>>("isOwner")
     for (var i:i32 = 0; i < owners.length; i++) {
       var o:Address = owners[i]
