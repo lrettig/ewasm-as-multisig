@@ -13,7 +13,7 @@ import {
   assert,
   write,
 } from "./ewasm"
-import { Set } from "internal/set"
+import { Set } from "set"
 
 // Constants
 const MAX_OWNERS: i32 = 50

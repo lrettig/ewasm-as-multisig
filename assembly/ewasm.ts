@@ -11,6 +11,8 @@ export class Address {
 }
 
 export class Contract {
+  // Required for now per https://github.com/AssemblyScript/assemblyscript/issues/167
+  constructor() {}
   init(): Address { return new Address(0) }
 }
 
