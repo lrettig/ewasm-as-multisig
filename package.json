@@ -4,10 +4,8 @@
     "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize --noDebug",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
   },
-  "devDependencies": {
-    "assemblyscript": "github:AssemblyScript/assemblyscript"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "glob": "^7.1.2"
+    "ewasm": "github:lrettig/ewasm-as"
   }
 }

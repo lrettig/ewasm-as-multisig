@@ -4,8 +4,6 @@
 // All code offered without warranty.
 // Inspired by https://github.com/gnosis/MultiSigWallet
 
-import "allocator/arena"
-
 import {
   Address,
   Contract,
@@ -13,17 +11,17 @@ import {
   assert,
   write,
 } from "./ewasm"
-import { Set } from "set"
 
 // Constants
 const MAX_OWNERS: i32 = 50
 
+@ewasm
 class MultiSigWalletFactory extends Contract {
   // Create a new wallet. Takes a list of owners and a minimum required number
   // of signatures, returns address of new wallet contract.
   create(owners: Address[], required: i32): Address {
     var wallet = new MultiSigWallet(owners, required)
-    return wallet.init()
+    return wallet._address
   }
 }
 
@@ -33,7 +31,6 @@ class MultiSigWallet extends Contract {
     owners: Address[],
     required: i32,
   ) {
-    // super()
     var isOwner: Set<Address> = read<Set<Address>>("isOwner")
     for (var i:i32 = 0; i < owners.length; i++) {
       var o:Address = owners[i]
@@ -71,11 +68,5 @@ class MultiSigWallet extends Contract {
   isConfirmed(
     txid: i32,
   ):bool {}
-}
-
-export function main(): void {
-  // Bootstrap the whole process
-  var factory = new MultiSigWalletFactory()
-  // factory.init()
 }
 
