@@ -10,7 +10,8 @@ import {
   read,
   assert,
   write,
-} from "./ewasm"
+// } from "ewasm"
+} from "../../ewasm-as"
 
 // Constants
 const MAX_OWNERS: i32 = 50
